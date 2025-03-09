@@ -126,16 +126,15 @@ nav:
   - Home: index.md
   - About:
       关于我们: About/index.md
-      新手指南:
-        电池充放电: About/新手指南/电池冲放电.md
-        战队共享文件连接: About/新手指南/战队服务器连接教程.md
-        打印机使用教程: About/新手指南/打印机使用教程.md
       培养计划:
         培养计划: About/培养计划/index.md
         程序组培养规划: About/培养计划/程序组培养计划.md
+      伙伴们的秘密基地:
+        Deadline039's blog: https://deadline039.github.io/
+        PickingChips's blog: https://pickingchip.github.io/
+
   - 电控:
       关于电控: Electrical/index.md
-      电控基础: Other/电控基础.md
       C语言:
         关于C语言: Electrical/C语言/index.md
         C语言基础: https://deadline039.github.io/C/
@@ -147,7 +146,10 @@ nav:
         启动过程: Electrical/Stm32/启动过程.md
         重要外设: Electrical/Stm32/重要外设.md
         通信协议: Electrical/Stm32/通信协议.md
+
       嵌入式技术:
+        电控基础: Electrical/Embedded/电控基础.md
+        树莓派: Electrical/Embedded/树莓派.md
         Deadline039's blog: https://deadline039.github.io/Embedded/
 
   - 视觉:
@@ -176,8 +178,10 @@ nav:
         Linux: https://deadline039.github.io/Linux/
       # 计算机网络:
   - Other:
-      树莓派: Other/树莓派.md
-  - 伙伴们的秘密基地:
-      SecretBase: Base/index.md
-      Deadline039's blog: https://deadline039.github.io/
-      PickingChips's blog: https://pickingchip.github.io/
+      关于Other: Other/index.md
+      新手指南:
+        电池充放电: Other/新手指南/电池冲放电.md
+        战队共享文件连接: Other/新手指南/战队服务器连接教程.md
+        打印机使用教程: Other/新手指南/打印机使用教程.md
+      Jlink固件烧录教程: Other/Jlink固件烧录教程.md
+      MCUViewer使用方法: Other/MCUViewer使用方法.md
