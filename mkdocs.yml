@@ -6,6 +6,7 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  custom_dir: overrides
   font: #false # 国内网络访问 Google 源可能会有问题
     text: "Noto Sans SC - local"
     #code: Roboto Mono
@@ -125,63 +126,61 @@ extra_css:
 nav:
   - Home: index.md
   - About:
-      关于我们: About/index.md
-      培养计划:
-        培养计划: About/培养计划/index.md
-        程序组培养规划: About/培养计划/程序组培养计划.md
-      伙伴们的秘密基地:
-        Deadline039's blog: https://deadline039.github.io/
-        PickingChips's blog: https://pickingchip.github.io/
+      - 关于我们: About/index.md
+      - 培养计划:
+          - 培养计划: About/培养计划/index.md
+          - 程序组培养规划: About/培养计划/程序组培养计划.md
+      - 伙伴们的秘密基地:
+          - Deadline039's blog: https://deadline039.github.io/
+          - PickingChips's blog: https://pickingchip.github.io/
 
   - 电控:
-      关于电控: Electrical/index.md
-      C语言:
-        关于C语言: Electrical/C语言/index.md
-        C语言基础: https://deadline039.github.io/C/
-        C编码风格与规范: Electrical/C语言/Program-Design/C-code-style.md
-      STM32:
-        Stm32概述: Electrical/Stm32/Stm32概述.md
-        项目组成: Electrical/Stm32/项目组成.md
-        STM32CubMX: Electrical/Stm32/STM32CubMX.md
-        启动过程: Electrical/Stm32/启动过程.md
-        重要外设: Electrical/Stm32/重要外设.md
-        通信协议: Electrical/Stm32/通信协议.md
+      - 关于电控: Electrical/index.md
+      - C语言:
+          - 关于C语言: Electrical/C语言/index.md
+          - C语言基础: https://deadline039.github.io/C/
+          - C编码风格与规范: Electrical/C语言/Program-Design/C-code-style.md
+      - STM32:
+          - Stm32概述: Electrical/Stm32/Stm32概述.md
+          - 项目组成: Electrical/Stm32/项目组成.md
+          - STM32CubMX: Electrical/Stm32/STM32CubMX.md
+          - 启动过程: Electrical/Stm32/启动过程.md
+          - 重要外设: Electrical/Stm32/重要外设.md
+          - 通信协议: Electrical/Stm32/通信协议.md
 
-      嵌入式技术:
-        电控基础: Electrical/Embedded/电控基础.md
-        树莓派: Electrical/Embedded/树莓派.md
-        Deadline039's blog: https://deadline039.github.io/Embedded/
+      - 嵌入式技术:
+          - 电控基础: Electrical/Embedded/电控基础.md
+          - 树莓派: Electrical/Embedded/树莓派.md
+          - Deadline039's blog: https://deadline039.github.io/Embedded/
 
   - 视觉:
-      关于视觉: Vision/index.md
+      - 关于视觉: Vision/index.md
   - 机械:
-      关于机械: Mechanical/index.md
-      机械1:
-        机械1-1: Mechanical/Mechanical1-1.md
-        机械1-2: Mechanical/Mechanical1-2.md
-      机械2:
-        机械1-1: Mechanical/Mechanical1-1.md
-        机械1-2: Mechanical/Mechanical1-2.md
+      - 关于机械: Mechanical/index.md
+      - 机械1:
+          - 机械1-1: Mechanical/Mechanical1-1.md
+          - 机械1-2: Mechanical/Mechanical1-2.md
+      - 机械2:
+          - 机械1-1: Mechanical/Mechanical1-1.md
+          - 机械1-2: Mechanical/Mechanical1-2.md
   - 电路:
-      关于电路: Circuit/index.md
+      - 关于电路: Circuit/index.md
   - CS四件套:
-      CS四件套: CS/index.md
-      计算机组成原理:
-        1.计算机基本结构: CS/CO/计算机基本结构.md
-        2.指令集系统结构: CS/CO/指令集系统结构.md
-        3.输入输出结构: CS/CO/输入输出结构.md
-        4.重要的软件部分: CS/CO/软件.md
-        5.存储器系统: CS/CO/存储器系统.md
-      # 数据结构:
-      操作系统:
-        FreeRTOS: CS/OS/FreeRTOS.md
-        Linux: https://deadline039.github.io/Linux/
-      # 计算机网络:
+      - CS四件套: CS/index.md
+      - 计算机组成原理:
+          - 1.计算机基本结构: CS/CO/计算机基本结构.md
+          - 2.指令集系统结构: CS/CO/指令集系统结构.md
+          - 3.输入输出结构: CS/CO/输入输出结构.md
+          - 4.重要的软件部分: CS/CO/软件.md
+          - 5.存储器系统: CS/CO/存储器系统.md
+      - 操作系统:
+          - FreeRTOS: CS/OS/FreeRTOS.md
+          - Linux: https://deadline039.github.io/Linux/
   - Other:
-      关于Other: Other/index.md
-      新手指南:
-        电池充放电: Other/新手指南/电池冲放电.md
-        战队共享文件连接: Other/新手指南/战队服务器连接教程.md
-        打印机使用教程: Other/新手指南/打印机使用教程.md
-      Jlink固件烧录教程: Other/Jlink固件烧录教程.md
-      MCUViewer使用方法: Other/MCUViewer使用方法.md
+      - 关于Other: Other/index.md
+      - 新手指南:
+          - 电池充放电: Other/新手指南/电池冲放电.md
+          - 战队共享文件连接: Other/新手指南/战队服务器连接教程.md
+          - 打印机使用教程: Other/新手指南/打印机使用教程.md
+      - Jlink固件烧录教程: Other/Jlink固件烧录教程.md
+      - MCUViewer使用方法: Other/MCUViewer使用方法.md
