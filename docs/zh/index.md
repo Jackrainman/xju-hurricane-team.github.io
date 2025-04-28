@@ -3,6 +3,7 @@ title: "新疆大学飓风战队文档站"
 hide:
   - navigation
   - toc
+comments: true  
 ---
 
 # 欢迎访问新疆大学飓风战队文档站
