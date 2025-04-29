@@ -2,10 +2,12 @@
 
 ## 使用方法
 
-![1](xju_wireless-emergency-stop.image/1.jpg)
-
-![2](xju_wireless-emergency-stop.image/2.jpg)
-
+<div align=center>
+	<img src="xju_wireless-emergency-stop.image/1.jpg" width = "300" height = "300" alt="" align=middle/>
+</div>
+<div align=center>
+	<img src="xju_wireless-emergency-stop.image/2.jpg" width = "300" height = "300" alt="" align=middle/>
+</div>
 
 
 1.功率计插上电池即可开机，保险加一个手动急停
