@@ -3,10 +3,11 @@
 ## 使用方法
 
 <div align=center>
-	<img src="xju_wireless-emergency-stop.image/1.jpg" width = "300" height = "300" alt="" align=middle/>
+	<img src="xju-hurricane-team.github.io/docs/zh/Other/Picture/1.jpg" width = "300" height = "300" alt="" align=middle/>
 </div>
+
 <div align=center>
-	<img src="xju_wireless-emergency-stop.image/2.jpg" width = "300" height = "300" alt="" align=middle/>
+	<img src="xju-hurricane-team.github.io/docs/zh/Other/Picture/2.jpg" width = "300" height = "300" alt="" align=middle/>
 </div>
 
 
