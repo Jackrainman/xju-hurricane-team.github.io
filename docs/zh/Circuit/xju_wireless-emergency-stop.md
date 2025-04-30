@@ -2,13 +2,10 @@
 
 ## 使用方法
 
-<div align=center>
-	<img src="xju-hurricane-team.github.io/docs/zh/Other/Picture/1.jpg" width = "300" height = "300" alt="" align=middle/>
-</div>
+<img src="../Other/Picture/1.jpg" alt="1" style="zoom:33%;" />
 
-<div align=center>
-	<img src="xju-hurricane-team.github.io/docs/zh/Other/Picture/2.jpg" width = "300" height = "300" alt="" align=middle/>
-</div>
+<img src="../Other/Picture/2.jpg" alt="1" style="zoom:33%;" />
+
 
 
 1.功率计插上电池即可开机，保险加一个手动急停
