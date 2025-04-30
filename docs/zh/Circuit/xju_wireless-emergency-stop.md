@@ -2,16 +2,9 @@
 
 ## 使用方法
 
-<<<<<<< HEAD
-<img src="../Other/Picture/1.jpg" alt="1" style="zoom:33%;" />
+<img src="Picture/1.jpg" alt="1" style="zoom:33%;" />
 
-<img src="../Other/Picture/2.jpg" alt="1" style="zoom:33%;" />
-
-=======
-![1](./Picture/1.jpg)
->>>>>>> bea39806a143672c993a8a753393f4a68ccef03a
-
-![2](./Picture/2.jpg)
+<img src="Picture/2.jpg" alt="2" style="zoom:33%;" />
 
 1.功率计插上电池即可开机，保险加一个手动急停
 
