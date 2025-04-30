@@ -2,13 +2,10 @@
 
 ## 使用方法
 
-<div align="center">
-<img src="Picture\1.jpg" alt="1" width="40%" height="auto" />
-</div>
+![1](./Picture/1.jpg)
 
-<div align="center">
-<img src="Picture/2.jpg" alt="2" width="40%" height="auto" />
-</div>
+![1](./Picture/1.jpg)
+
 
 1.功率计插上电池即可开机，保险加一个手动急停
 
