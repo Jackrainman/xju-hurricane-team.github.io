@@ -165,6 +165,8 @@ nav:
           - 机械1-2: Mechanical/Mechanical1-2.md
   - 电路:
       - 关于电路: Circuit/index.md
+      - 常用外设引脚顺序: Circuit/常用外设引脚顺序.md
+      - 无线急停: Circuit/xju_wireless-emergency-stop.md
   - CS四件套:
       - CS四件套: CS/index.md
       - 计算机组成原理:
