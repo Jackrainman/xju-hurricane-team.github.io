@@ -2,7 +2,7 @@
 
 ## 使用方法
 
-<img src="D:\xju-hurricane-team.github.io\docs\zh\Circuit\Picture\1.jpg" alt="1" style="zoom:33%;" />
+<img src="Picture\1.jpg" alt="1" style="zoom:33%;" />
 
 <img src="Picture/2.jpg" alt="2" style="zoom:33%;" />
 
