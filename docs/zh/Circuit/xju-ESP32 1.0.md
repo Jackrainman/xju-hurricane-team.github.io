@@ -12,13 +12,13 @@
 
 
 
-![3](./Picture/3.png)
+![3](./Picture/3.png#pic_center)
 
 ### 降压
 
-![4](./Picture/4.png)
+![4](./Picture/4.png#pic_center)
 
-![5](./Picture/5.png)
+![5](./Picture/5.png#pic_center)
 
 ### 电源输入
 
@@ -42,19 +42,19 @@ MOS管内部的任何两级之间分别存在3个电容：Cgs、Cds、Cgd。缓�
 
 
 
-![6](./Picture/6.png)
+![6](./Picture/6.png#pic_center)
 
 ### 电源输出
 
 24V用于驱动电机，5V和3.3V可给其他外设供电
 
-![7](./Picture/7.png)
+![7](./Picture/7.png#pic_center)
 
 ### USB下载
 
 按住BOOT按键然后插入TypeC插口然后松开按键即可进入程序下载模式
 
-![8](./Picture/8.png)
+![8](./Picture/8.png#pic_center)
 
 ### CAN
 
@@ -92,35 +92,35 @@ I2C1：默认SCL为IO2，SDA为IO3，硬件可以定义0和1，通过配置可�
 
 
 
-![17](./Picture/8.png)
+![17](./Picture/8.png#pic_center)
 
 ### 8路PWM输出
 
-![17](./Picture/10.png)
+![17](./Picture/10.png#pic_center)
 
 ### LED
 
-![11](./Picture/11.png)
+![11](./Picture/11.png#pic_center)
 
 ### 蜂鸣器
 
-![11](./Picture/13.png)
+![11](./Picture/13.png#pic_center)
 
 ### 按键
 
 BOOT为下载按键，EN为RESET按键
 
-![11](./Picture/15.png)
+![11](./Picture/15.png#pic_center)
 
 ## 二、PCB
 
 PCB的大小的打孔位置和大疆开发板A板相同，8.5cm x 5.8cm
 
-![14](./Picture/14.png)
+![14](./Picture/14.png#pic_center)
 
-![15](./Picture/15.png)
+![15](./Picture/15.png#pic_center)
 
 
 ## 三、引脚分配（程序请看）
 
-![16](./Picture/16.png)
+![16](./Picture/16.png#pic_center)
