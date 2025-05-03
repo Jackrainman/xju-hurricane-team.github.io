@@ -110,7 +110,7 @@ I2C1：默认SCL为IO2，SDA为IO3，硬件可以定义0和1，通过配置可�
 
 BOOT为下载按键，EN为RESET按键
 
-![11](/Picture/15.png)
+![13](Picture/13.png#pic_ceneter)
 
 ## 二、PCB
 
