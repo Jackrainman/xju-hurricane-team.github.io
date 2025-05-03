@@ -11,13 +11,13 @@
 外设有**36个GPIO**，可配置为SPI、LCD、Camera接口、UART、I2C、I2S、红外遥控、脉冲计数器、LEDPWM、全速USB2.0OTG、 USB串口/JTAG控制器、MCPWM、SD/MMC主机控制器、GDMA、TWAI®控制器（兼容ISO 118981-1）、ADC、触摸传感器、温度传感器、定时器和看门狗。
 
 
-![3](/Picture/3.png)
+![3](./Picture/3.png)
 
 ### 降压
 
-![4](/Picture/4.png)
+![4](./Picture/4.png)
 
-![5](/Picture/5.png)
+![5](./Picture/5.png)
 
 ### 电源输入
 
@@ -39,7 +39,7 @@
 
 MOS管内部的任何两级之间分别存在3个电容：Cgs、Cds、Cgd。缓启动通过MOS管内部的Cgs和外部电路中的C2进行充电实现。其中MOS内部的电容充电也就是**米勒效应**，米勒效应会使导通时间变长，在高频开关状态会严重增加MOS的开通损耗，但是在电源缓启动中有很大的用处。
 
-![6](/Picture/6.png)
+![6](./Picture/6.png)
 
 ### 电源输出
 
@@ -58,7 +58,7 @@ MOS管内部的任何两级之间分别存在3个电容：Cgs、Cds、Cgd。缓�
 
 ESP32内部自带一个CAN，所以只外接一个CAN。总共引出了四个CAN口
 
-![17](/Picture/17.png)
+![17](./Picture/17.png)
 
 ### 外设
 
@@ -88,19 +88,19 @@ I2C0：默认SCL为IO0，SDA为IO1，硬件可以定义0和1，通过配置可�
 
 I2C1：默认SCL为IO2，SDA为IO3，硬件可以定义0和1，通过配置可以在任意IO上实现I2C功能
 
-![9](Picture/9.png)
+![9](./Picture/9.png)
 
 ### 8路PWM输出
 
-![17](/Picture/10.png)
+![17](./Picture/10.png)
 
 ### LED
 
-![11](/Picture/11.png)
+![11](./Picture/11.png)
 
 ### 蜂鸣器
 
-![12](Picture/12.png)
+![12](./Picture/12.png)
 
 ### 按键
 
@@ -112,12 +112,12 @@ BOOT为下载按键，EN为RESET按键
 
 PCB的大小的打孔位置和大疆开发板A板相同，8.5cm x 5.8cm
 
-![14](/Picture/14.png)
+![14](./Picture/14.png)
 
-![15](/Picture/15.png)
+![15](./Picture/15.png)
 
-![18](xju-ESP32 1.0.image/18.jpg)
+![18](./Picture/18.jpg)
 
 ## 三、引脚分配（程序请看）
 
-![16](Picture/16.png)
+![16](./Picture/16.png)
