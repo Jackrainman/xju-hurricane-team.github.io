@@ -14,7 +14,7 @@ comments: true
 
 
 
-[C语言](C语言/index.md){ .md-button }
+[C语言](https://deadline039.github.io/C/){ .md-button }
 [嵌入式技术](https://deadline039.github.io/Embedded/){ .md-button }
 [培养规划](培养计划/index.md){ .md-button }
 [Linux基础](https://deadline039.github.io/Linux/){ .md-button }
