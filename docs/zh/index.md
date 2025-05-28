@@ -12,7 +12,6 @@ comments: true
 
 欢迎提出意见，参与讨论！
 
-
 [C语言](https://deadline039.github.io/C/){ .md-button }
 [嵌入式技术](https://deadline039.github.io/Embedded/){ .md-button }
 [培养规划](培养计划/index.md){ .md-button }
