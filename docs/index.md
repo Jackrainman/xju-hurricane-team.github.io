@@ -15,4 +15,4 @@ comments: true
 [电控](Electrical/index.md){ .md-button }
 [视觉](Vision/index.md){ .md-button }
 [机械](Mechanical/index.md){ .md-button }
-[电路](Vision/index.md){ .md-button }
+[电路](Circuit/index.md){ .md-button }

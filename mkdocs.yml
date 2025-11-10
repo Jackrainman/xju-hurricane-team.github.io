@@ -137,7 +137,6 @@ nav:
   - 电控:
       - 关于电控: Electrical/index.md
       - C语言:
-          - 关于C语言: Electrical/C语言/index.md
           - C语言基础: https://deadline039.github.io/C/
           - C编码风格与规范: Electrical/C语言/Program-Design/C-code-style.md
       - STM32:
@@ -147,12 +146,12 @@ nav:
           - 启动过程: Electrical/Stm32/启动过程.md
           - 重要外设: Electrical/Stm32/重要外设.md
           - 通信协议: Electrical/Stm32/通信协议.md
+      - RTOS:
+          - FreeRTOS: Electrical/RTOS/FreeRTOS.md
 
       - 嵌入式技术:
           - 电控基础: Electrical/Embedded/电控基础.md
           - 树莓派: Electrical/Embedded/树莓派.md
-          - Deadline039's blog: https://deadline039.github.io/Embedded/
-
   - 视觉:
       - 关于视觉: Vision/index.md
   - 机械:
@@ -168,23 +167,20 @@ nav:
       - 常用外设引脚顺序: Circuit/常用外设引脚顺序.md
       - 无线急停: Circuit/xju_wireless-emergency-stop.md
       - XJU-ESP32开发板: Circuit/xju-ESP32 1.0.md
-
-  - CS四件套:
-      - CS四件套: CS/index.md
-      - 计算机组成原理:
-          - 1.计算机基本结构: CS/CO/计算机基本结构.md
-          - 2.指令集系统结构: CS/CO/指令集系统结构.md
-          - 3.输入输出结构: CS/CO/输入输出结构.md
-          - 4.重要的软件部分: CS/CO/软件.md
-          - 5.存储器系统: CS/CO/存储器系统.md
-      - 操作系统:
-          - FreeRTOS: CS/OS/FreeRTOS.md
-          - Linux: https://deadline039.github.io/Linux/
   - Other:
       - 关于Other: Other/index.md
-      - 新手指南:
-          - 电池充放电: Other/新手指南/电池冲放电.md
-          - 战队共享文件连接: Other/新手指南/战队服务器连接教程.md
-          - 打印机使用教程: Other/新手指南/打印机使用教程.md
+      - 电池充放电: Other/电池冲放电.md
+      - 战队共享文件连接: Other/战队服务器连接教程.md
+      - 打印机使用教程: Other/打印机使用教程.md
       - Jlink固件烧录教程: Other/Jlink固件烧录教程.md
       - MCUViewer使用方法: Other/MCUViewer使用方法.md
+      - 计算机组成原理:
+          - 1.计算机基本结构: Other/CO/计算机基本结构.md
+          - 2.指令集系统结构: Other/CO/指令集系统结构.md
+          - 3.输入输出结构: Other/CO/输入输出结构.md
+          - 4.重要的软件部分: Other/CO/软件.md
+          - 5.存储器系统: Other/CO/存储器系统.md
+  - 友链:
+      - 友链: 友链/index.md
+      - Deadline039's blog: https://deadline039.github.io/
+      - PickingChip's blog: https://pickingchip.github.io/

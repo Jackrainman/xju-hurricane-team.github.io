@@ -12,7 +12,7 @@ comments: true
 
 欢迎提出意见，参与讨论！
 
-[C语言](https://deadline039.github.io/C/){ .md-button }
-[嵌入式技术](https://deadline039.github.io/Embedded/){ .md-button }
-[培养规划](培养计划/index.md){ .md-button }
-[Linux基础](https://deadline039.github.io/Linux/){ .md-button }
+[电控](Electrical/index.md){ .md-button }
+[视觉](Vision/index.md){ .md-button }
+[机械](Mechanical/index.md){ .md-button }
+[电路](Circuit/index.md){ .md-button }
