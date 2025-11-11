@@ -126,14 +126,7 @@ extra_css:
 nav:
   - Home: index.md
   - About:
-      - 关于我们: About/index.md
-      - 培养计划:
-          - 培养计划: About/培养计划/index.md
-          - 程序组培养规划: About/培养计划/程序组培养计划.md
-      - 伙伴们的秘密基地:
-          - Deadline039's blog: https://deadline039.github.io/
-          - PickingChips's blog: https://pickingchip.github.io/
-
+      - WELCOME COME TO HURRICANE!: About/index.md
   - 电控:
       - 关于电控: Electrical/index.md
       - C语言:
@@ -152,6 +145,7 @@ nav:
       - 嵌入式技术:
           - 电控基础: Electrical/Embedded/电控基础.md
           - 树莓派: Electrical/Embedded/树莓派.md
+          - MCUViewer使用方法: Electrical/Embedded/MCUViewer使用方法.md
   - 视觉:
       - 关于视觉: Vision/index.md
   - 机械:
@@ -167,19 +161,12 @@ nav:
       - 常用外设引脚顺序: Circuit/常用外设引脚顺序.md
       - 无线急停: Circuit/xju_wireless-emergency-stop.md
       - XJU-ESP32开发板: Circuit/xju-ESP32 1.0.md
-  - Other:
-      - 关于Other: Other/index.md
+  - 其它:
+      - 关于其它: Other/index.md
       - 电池充放电: Other/电池冲放电.md
-      - 战队共享文件连接: Other/战队服务器连接教程.md
+      - 战队共享文件连接: Other/战队共享文档连接教程.md
       - 打印机使用教程: Other/打印机使用教程.md
       - Jlink固件烧录教程: Other/Jlink固件烧录教程.md
-      - MCUViewer使用方法: Other/MCUViewer使用方法.md
-      - 计算机组成原理:
-          - 1.计算机基本结构: Other/CO/计算机基本结构.md
-          - 2.指令集系统结构: Other/CO/指令集系统结构.md
-          - 3.输入输出结构: Other/CO/输入输出结构.md
-          - 4.重要的软件部分: Other/CO/软件.md
-          - 5.存储器系统: Other/CO/存储器系统.md
   - 友链:
       - 友链: 友链/index.md
       - Deadline039's blog: https://deadline039.github.io/

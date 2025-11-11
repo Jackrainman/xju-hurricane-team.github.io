@@ -899,3 +899,14 @@ if (!event_val_assert(event_val)) {
 推荐大家安装GBK to UTF8 for vscode扩展，可以识别到大部分GBK编码的文件，而且可以批量转换编码。
 
 ![image.png](C-code-style/image 5.png)
+
+
+
+
+
+> Author: Deadline039
+>
+> Aate: 2024
+
+
+
