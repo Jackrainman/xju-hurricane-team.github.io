@@ -128,24 +128,23 @@ nav:
   - About:
       - WELCOME COME TO HURRICANE!: About/index.md
   - 电控:
-      - 关于电控: Electrical/index.md
+      - 电控: Electrical/index.md
       - C语言:
           - C语言基础: https://deadline039.github.io/C/
           - C编码风格与规范: Electrical/C语言/Program-Design/C-code-style.md
-      - STM32:
-          - Stm32概述: Electrical/Stm32/Stm32概述.md
-          - 项目组成: Electrical/Stm32/项目组成.md
-          - STM32CubMX: Electrical/Stm32/STM32CubMX.md
+      - STM32: 
+          - Stm32: Electrical/Stm32/index.md
+          - Stm32基础: Electrical/Stm32/Stm32基础.md
+          - Stm32开发: Electrical/Stm32/Stm32开发.md
           - 启动过程: Electrical/Stm32/启动过程.md
-          - 重要外设: Electrical/Stm32/重要外设.md
-          - 通信协议: Electrical/Stm32/通信协议.md
       - RTOS:
           - FreeRTOS: Electrical/RTOS/FreeRTOS.md
+      - Motors: Electrical/Motors/电机简介.md
 
-      - 嵌入式技术:
-          - 电控基础: Electrical/Embedded/电控基础.md
-          - 树莓派: Electrical/Embedded/树莓派.md
-          - MCUViewer使用方法: Electrical/Embedded/MCUViewer使用方法.md
+      - 其他:
+          - 电控基础: Electrical/Other/电控基础.md
+          - 树莓派: Electrical/Other/树莓派.md
+          - MCUViewer使用方法: Electrical/Other/MCUViewer使用方法.md
   - 视觉:
       - 关于视觉: Vision/index.md
   - 机械:
