@@ -5,12 +5,11 @@
 在竞赛与调试过程中，**合理使用电池至关重要**。然而实际操作中，队员常常因为专注调试而忘记接BB 响，导致欠压或异常状态无法及时提醒，影响设备安全与调车效率。为了解决这一痛点，我们在最新版本的**分电板上集成了 BB 响功能**。确保电池状态在任意使用场景下都能够被实时提示，提升了使用便利性与安全可靠性。
 
 ## 2.效果展示
+<div align="center">
+  <img src="upload://3pNSWrcXEtUL1jg3WfqIfMQwQXI.jpeg" width="380px" alt="电路相关图片" />
+</div>
 
-<img src="【分电+分CAN+bb响】.image/c57f997b098fd160571f24400bee616c.jpg" alt="c57f997b098fd160571f24400bee616c" style="zoom: 33%;" />
 
-<img src="【分电+分CAN+bb响】.image/image-20251126151154022.png" alt="image-20251126151154022" style="zoom: 50%;" />
-
-<img src="【分电+分CAN+bb响】.image/image-20251126151006974.png" alt="image-20251126151006974" style="zoom: 33%;" />
 
 ## 3.模块说明
 
@@ -21,6 +20,7 @@
 ## 4.说明
 
 附件里有**工程文件**、**支撑外壳.step文件**、**CH32固件**、**WCH-LinkUtility调试工具**。工程文件是嘉立创V3版本，客户端可能打不开，网页版可以。**新手开源，多有不足请多见谅**。通讯信息（Wechat）：RipMgAl
+
 
 
 
