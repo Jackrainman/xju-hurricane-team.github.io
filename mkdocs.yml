@@ -158,6 +158,14 @@ nav:
           - 机械1-2: Mechanical/Mechanical1-2.md
   - 电路:
       - 关于电路: Circuit/index.md
+      - 元器件基础: 
+          - 电阻: Circuit/元器件基础/电阻.md
+          - 电容: Circuit/元器件基础/电容.md
+          - 电感: Circuit/元器件基础/电感.md
+          - Diode: Circuit/元器件基础/Diode.md
+          - BJT: Circuit/元器件基础/BJT.md
+          - MOSFET: Circuit/元器件基础/MOSFET.md
+          - IGBT: Circuit/元器件基础/IGBT.md
       - 电驱: 
           - FOC学习-硬件版: Circuit/电驱/FOC学习-硬件版.md
       - 电源:
