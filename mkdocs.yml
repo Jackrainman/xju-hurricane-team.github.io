@@ -128,6 +128,7 @@ nav:
   - About:
       - WELCOME COME TO HURRICANE!: About/index.md
       - 如何参与战队文档编辑: About/如何参与.md
+      - 战队文档规范: About/文档规范.md
   - 电控:
       - 电控: Electrical/index.md
       - C语言:
