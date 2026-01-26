@@ -130,7 +130,7 @@ nav:
       - C语言:
           - C语言基础: https://deadline039.github.io/C/
           - C编码风格与规范: Electrical/C语言/Program-Design/C-code-style.md
-      - STM32: 
+      - STM32:
           - Stm32: Electrical/Stm32/index.md
           - Stm32基础: Electrical/Stm32/Stm32基础.md
           - Stm32开发: Electrical/Stm32/Stm32开发.md
@@ -138,7 +138,17 @@ nav:
       - RTOS:
           - FreeRTOS: Electrical/RTOS/FreeRTOS.md
       - Motors: Electrical/Motors/电机简介.md
-
+      - 控制理论:
+          - 控制论基础: Electrical/ControlTheory/Control-Theory-Fundamentals.md
+          - PID控制详解: Electrical/ControlTheory/PID-Control.md
+          - 控制论进阶: Electrical/ControlTheory/Advanced-Control-Theory.md
+          - LADRC:
+            - 跟踪微分器(TD): Electrical/ControlTheory/LADRC.md
+            - 扩张状态观测器(ESO): Electrical/ControlTheory/LADRC.md
+            - LADRC代码详解: Electrical/ControlTheory/LADRC.md
+      - CAN总线:
+          - CAN总线基础: Electrical/CAN/CAN-Bus-Basics.md
+          - CAN List详解: Electrical/CAN/CAN-List.md
       - 其他:
           - 电控基础: Electrical/Other/电控基础.md
           - 树莓派: Electrical/Other/树莓派.md
@@ -155,10 +165,10 @@ nav:
           - 类的封装和调用: Vision/navigation/ROS2/导航_支线/类的封装和调用.md
           - Launch文件的编写: Vision/navigation/ROS2/导航_支线/launch文件的编写.md
           - 常用开发工具: Vision/navigation/ROS2/导航_支线/ROS2常用开发工具.md
-        - 雷达定位: 
+        - 雷达定位:
           - Mid-360激光雷达配置教程: Vision/navigation/lidar/Mid-360激光雷达配置教程.md
           - 雷达定位信息: Vision/navigation/lidar/雷达定位信息.md
-      - 深度学习: 
+      - 深度学习:
         - 知识点: Vision/深度学习/知识点.md
         - 实践结果: Vision/深度学习/实践结果.md
       - 强化学习: Vision/强化学习.md
@@ -173,7 +183,7 @@ nav:
           - 机械1-2: Mechanical/Mechanical1-2.md
   - 电路:
       - 关于电路: Circuit/index.md
-      - 元器件基础: 
+      - 元器件基础:
           - 电阻: Circuit/元器件基础/电阻.md
           - 电容: Circuit/元器件基础/电容.md
           - 电感: Circuit/元器件基础/电感.md
@@ -181,7 +191,7 @@ nav:
           - BJT: Circuit/元器件基础/BJT.md
           - MOSFET: Circuit/元器件基础/MOSFET.md
           - IGBT: Circuit/元器件基础/IGBT.md
-      - 电驱: 
+      - 电驱:
           - FOC学习-硬件版: Circuit/电驱/FOC学习-硬件版.md
       - 电源:
           - MP5048并联大功率稳压电源: Circuit/电源/MP5048并联大功率稳压电源.md
