@@ -6,13 +6,13 @@
 
 
 
-### 框架的搭建
+### 一.框架的搭建
 
 [SMBU-PolarBear-Robotics-Team/pb2025_sentry_nav: Shenzhen MSU-BIT University PolarBear Team's Sentry Navigation Sim2Real Package for RoboMaster2025. QQ group: 932119307](https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_nav?tab=readme-ov-file)
 
 
 
-### 北极熊代码调用
+### 二.北极熊代码调用
 
 ##### rmu_gazebo_simulator（配套的仿真包）
 
@@ -148,7 +148,7 @@
 
 
 
-##### 北极熊导航介绍
+### 三.北极熊导航介绍
 
 下面是北极熊导航包的各个文件及作用说明。
 
