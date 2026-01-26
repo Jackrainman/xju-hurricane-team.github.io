@@ -9,7 +9,7 @@
 ## 一. ROS 2 基础介绍
 
 ### 1. ros2系统架构
-![](./picture/system.png = 300x500)
+![](./picture/system.png)
 
 ros2的系统架构可以分为5层：操作系统层、DDS实现层、DDS接口层、ROS2客户端层和应用层
 
@@ -25,8 +25,6 @@ ros2的系统架构可以分为5层：操作系统层、DDS实现层、DDS接口
     所有基于RCL（ROS2客户端库）开发的程序都属于应用层，比如海龟模拟器和ROSQT(rqt)工具就都是基于这一层的。
 
 ### 2. 四大核心通信机制
-![](./picture/communication.png)
-
 话题通信、服务通信、参数通信和动作通信
 
 * **（1）话题通信**
@@ -188,9 +186,8 @@ ament_package()
 
 * 首先添加了 `find_package` 和 `add_executable` 用于查找依赖以及添加可执行文件，然后采用 `ament_cmake` 提供的`ament_target_dependencies` 指令来添加依赖，最后添加的是 `install` 指令，该指令将编译好的可执行文件复制到`install/demo_cpp_pkg/lib/demo_cpp_pkg` 目录下，这样使用 `ros2 run` 才能找到该节点。
 * 在创建 C++ 功能包时，选定的构建类型是 `ament_cmake`，ament_cmake 其实是 CMake 的超集。ament_cmake 在 CMake 的指令集之上，又添加了一些更加方便的指令。
-* `ament_package()`，该指令会从 CMakeLists.txt 收集信息，生成索引和进行相关配置，所以该指令需要在每个 ament_cmake 类型的功能包的 CMakeLists.txt 的最后一行进行调用
+* `ament_package()`，该指令会从 CMakeLists.txt 收集信息，生成索引和进行相关配置，所以该指令需要在每个 ament_cmake 类型的功能包的 CMakeLists.txt 的最后一行进行构建功能包前还需要在清单文件 `package.xml` 中添加对 rclcpp 的依赖声明：
 
-构建功能包前还需要在清单文件 `package.xml` 中添加对 rclcpp 的依赖声明：
 ```xml
 <?xml version="1.0"?>
 ...

@@ -10,7 +10,7 @@
 ## Nav2 行为树运行框架
 
 
-![](./picture/nav2_architecture.png = 800x500)
+![](./picture/tree.png)
 
 **启动仿真命令：**
 
@@ -60,11 +60,11 @@ ros2 launch nav2_bringup tb3_simulation_launch.py
 </root>
 ```
 
+![](./picture/nav2_goal.png)
+
 ------
 
 ## 两大代价地图 (Costmaps)
-
-![](./picture/costmap_layers.png = 600x400)
 
 ### 全局代价地图
 
@@ -109,8 +109,6 @@ ros2 launch nav2_bringup tb3_simulation_launch.py
 ------
 
 ## 状态估计（重要组件）
-
-![](./picture/tf_tree.png = 600x500)
 
 Nav2 中，默认进行状态估计的组件是 **AMCL（自适应蒙特卡洛定位）**。
 
