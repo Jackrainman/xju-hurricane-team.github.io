@@ -143,9 +143,9 @@ nav:
           - PID控制详解: Electrical/ControlTheory/PID-Control.md
           - 控制论进阶: Electrical/ControlTheory/Advanced-Control-Theory.md
           - LADRC:
-            - 跟踪微分器(TD): Electrical/ControlTheory/LADRC.md
-            - 扩张状态观测器(ESO): Electrical/ControlTheory/LADRC.md
-            - LADRC代码详解: Electrical/ControlTheory/LADRC.md
+            - 跟踪微分器(TD): Electrical/ControlTheory/LADRC.md#跟踪微分器td
+            - 扩张状态观测器(ESO): Electrical/ControlTheory/LADRC.md#扩张状态观测器eso
+            - LADRC代码详解: Electrical/ControlTheory/LADRC.md#ladrc代码详解
       - CAN总线:
           - CAN总线基础: Electrical/CAN/CAN-Bus-Basics.md
           - CAN List详解: Electrical/CAN/CAN-List.md
