@@ -66,12 +66,6 @@ plugins:
       htmlmin_opts:
         remove_comments: true
       cache_safe: true
-      js_files:
-        - javascripts/mathjax.js
-        - javascripts/tex-mml-chtml.js
-        - javascripts/embed.js
-      css_files:
-        - stylesheets/extra.css
 
 extra:
   generator: false
