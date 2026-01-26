@@ -2,6 +2,16 @@
 comments: ture
 ---
 
-详情请见飞书链接：
+视觉部分设计的技术栈：
 
-https://gcn2qvzqkbnr.feishu.cn/wiki/PV5uw0lSuiFgyKkeTDScNHBEn3d
+- 导航
+  - ROS2通信
+  - Navigation2导航框架
+  - 雷达定位
+  
+- 深度学习
+  - 主要掌握yolo的训练模型，调用模型的整个流程
+- 强化学习
+
+需要学会使用一系列工具
+

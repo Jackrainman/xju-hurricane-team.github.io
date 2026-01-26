@@ -71,9 +71,9 @@ plugins:
         - javascripts/embed.js
       css_files:
         - stylesheets/extra.css
-extra:
-  generator: false
-  social:
+      extra:
+      generator: false
+      social:
     - name: Github
       link: https://github.com/XJU-Hurricane-Team
       icon: fontawesome/brands/github
@@ -148,7 +148,23 @@ nav:
           - 树莓派: Electrical/Other/树莓派.md
           - MCUViewer使用方法: Electrical/Other/MCUViewer使用方法.md
   - 视觉:
-      - 关于视觉: Vision/index.md
+      - 视觉: Vision/index.md
+      - 导航：
+        - ROS2：
+          - ROS2主流程: Vision/navigation/ROS2/ROS2主流程.md
+          - 基础编程: Vision/navigation/ROS2/ROS2基础编程.md
+          - 类的封装和调用: Vision/navigation/ROS2/类的封装和调用.md
+          - Launch文件的编写: Vision/navigation/ROS2/launch文件的编写.md
+          - 常用开发工具: Vision/navigation/ROS2/ROS2常用开发工具.md
+          - Navigation2导航框架: Vision/navigation/ROS2/Navigation2导航框架.md
+        - 雷达定位: 
+          - Mid-360激光雷达配置教程: Vision/navigation/lidar/Mid-360激光雷达配置教程.md
+          - 雷达定位信息: Vision/navigation/lidar/雷达定位信息.md
+      - 深度学习: 
+        - 知识点: Vision/navigation/深度学习/知识点.md
+        - 实践结果: Vision/navigation/深度学习/实践结果.md
+      - 强化学习: Vision/强化学习.md
+      - 工具使用简介: Vision/工具.md
   - 机械:
       - 关于机械: Mechanical/index.md
       - 机械1:
@@ -177,7 +193,6 @@ nav:
           - XJU-2026分电板: Circuit/其他/2026分电板V1.0.md
           - XJU-ESP32开发板: Circuit/其他/xju-ESP32 1.0.md
           - 无线急停: Circuit/其他/xju_wireless-emergency-stop.md
-      
   - 其它:
       - 关于其它: Other/index.md
       - 电池充放电: Other/电池冲放电.md
