@@ -456,3 +456,12 @@ ros2 param --help
 可以查看参数命令行工具的更多使用方法
 
 在 rqt 工具中，插件 Configuration → DynamicReconfigure 提供了一个可视化的参数配置工具
+
+
+
+
+
+
+
+# ROS2学习代码跑通的版本
+
