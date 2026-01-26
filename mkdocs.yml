@@ -148,12 +148,12 @@ nav:
       - 导航:
         - 导航主线:
           - ROS2主流程: Vision/navigation/ROS2/导航_主线/ROS2主流程.md
-          - Navigation2导航框架: Vision/navigation/ROS2/导航_支线/Navigation2导航框架.md
+          - Navigation2导航框架: Vision/navigation/ROS2/导航_主线/Navigation2导航框架.md
         - 导航支线:
-          - 基础编程: Vision/navigation/ROS2/ROS2基础编程.md
-          - 类的封装和调用: Vision/navigation/ROS2/类的封装和调用.md
-          - Launch文件的编写: Vision/navigation/ROS2/launch文件的编写.md
-          - 常用开发工具: Vision/navigation/ROS2/ROS2常用开发工具.md
+          - 基础编程: Vision/navigation/ROS2/导航_支线/ROS2基础编程.md
+          - 类的封装和调用: Vision/navigation/ROS2/导航_支线/类的封装和调用.md
+          - Launch文件的编写: Vision/navigation/ROS2/导航_支线/launch文件的编写.md
+          - 常用开发工具: Vision/navigation/ROS2/导航_支线/ROS2常用开发工具.md
         - 雷达定位: 
           - Mid-360激光雷达配置教程: Vision/navigation/lidar/Mid-360激光雷达配置教程.md
           - 雷达定位信息: Vision/navigation/lidar/雷达定位信息.md
