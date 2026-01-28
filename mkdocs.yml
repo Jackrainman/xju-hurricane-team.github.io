@@ -173,6 +173,8 @@ nav:
           - 机械1-2: Mechanical/Mechanical1-2.md
   - 电路:
       - 关于电路: Circuit/index.md
+      - 教学 : 
+          - 零基础入门嘉立创: Circuit/教学/零基础入门嘉立创.md
       - 元器件基础: 
           - 电阻: Circuit/元器件基础/电阻.md
           - 电容: Circuit/元器件基础/电容.md
