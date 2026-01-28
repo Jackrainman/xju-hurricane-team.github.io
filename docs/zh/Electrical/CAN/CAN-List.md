@@ -231,3 +231,126 @@ void app_demo_loop(void) {
 ```
 
 ---
+
+# CAN 消息分发模块 (can_list) 
+
+## 2. 数据流架构图
+
+为了便于理解数据从硬件中断到用户回调的全过程，请参考以下数据流向图：
+
+```mermaid
+graph LR
+    HW[硬件 FIFO] -->|中断触发| ISR[中断服务函数]
+    ISR -->|RTOS 路径: 写入队列| Q[FreeRTOS 消息队列]
+    ISR -->|非 RTOS 路径: 直接调用| PROCESS[协议处理核心]
+    Q -->|任务唤醒| PROCESS
+    PROCESS -->|HAL_GetRxMessage| READ[读取寄存器数据]
+    READ -->|id % len| HASH[定位哈希桶]
+    HASH -->|id & mask| MATCH[链表遍历与匹配]
+    MATCH -->|Callback| USER[用户业务逻辑]
+
+```
+
+## 3. 详细数据流解析
+
+我们将数据处理流程拆解为四个关键阶段：**中断接收**、**任务调度**、**路由匹配**、**用户回调**。
+
+### 阶段一：数据源头与中断接收 (Entry Point)
+
+当 STM32 的 CAN 外设收到一帧完整报文并存入硬件 FIFO（先进先出缓存）后，会触发中断服务函数 (ISR)。
+
+根据是否使用 RTOS，处理逻辑分为两条路径：
+
+* **RTOS 路径（异步高效模式，推荐）**
+* **核心思想**：ISR 仅负责“通知”，不做繁重处理，确保系统高实时性。
+* **操作流程**：
+1. **打包元数据**：将 CAN 句柄 (`hcan`) 和 FIFO 编号 (`rx_fifo`) 封装入结构体。
+2. **推入队列**：调用 `xQueueSendFromISR` 将消息发送至后台任务队列。
+3. **屏蔽中断 (仅 bxCAN)**：暂时关闭当前中断，防止在后台处理完成前重复触发导致溢出。
+
+
+
+
+* **非 RTOS 路径（同步模式）**
+* ISR 直接调用 `can_message_process`，在中断上下文中完成所有解析工作。
+
+
+
+**代码示例 (can_list.c):**
+
+```c
+/* bxCAN FIFO0 中断回调 */
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
+#if CAN_LIST_USE_RTOS
+    /* 1. 检查队列有效性 */
+    if (can_list_queue_handle == NULL) return;
+
+    /* 2. 打包消息来源 */
+    send_msg_from_isr.hcan = hcan;
+    send_msg_from_isr.rx_fifo = CAN_RX_FIFO0;
+
+    /* 3. 发送至队列 (上下文切换) */
+    xQueueSendFromISR(can_list_queue_handle, &send_msg_from_isr, NULL);
+
+    /* 4. 暂时屏蔽中断 (bxCAN 特有) */
+    HAL_CAN_DeactivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+#else
+    /* 非 RTOS 直接处理 */
+    can_message_process(hcan, CAN_RX_FIFO0);
+#endif
+}
+
+```
+
+### 阶段二：数据获取与格式统一 (Data Retrieval)
+
+后台任务 `can_list_polling_task` 平时处于阻塞状态。一旦队列收到消息，任务立即被唤醒并执行以下操作：
+
+1. **读取硬件寄存器**：根据 HAL 库差异，调用 `HAL_CAN_GetRxMessage` (bxCAN) 或 `HAL_FDCAN_GetRxMessage` (FDCAN)。
+2. **数据搬运**：将数据从外设寄存器转移到内存变量 `rx_header` (帧头信息) 和 `rx_data` (数据载荷)。
+3. **恢复中断**：对于 bxCAN，读取完成后立即调用 `HAL_CAN_ActivateNotification` 重新开启接收中断。
+
+### 阶段三：哈希路由与掩码匹配 (Core Logic)
+
+这是本模块的核心逻辑，决定了数据属于哪个设备。
+
+* **哈希定位 (Hash Mapping)**
+* 根据 ID 类型（标准帧或扩展帧）选择对应的哈希表。
+* 使用取模运算直接定位链表头：。此算法避免了全局遍历，极大降低了 CPU 占用率。
+
+
+* **链表遍历与掩码过滤**
+* 由于哈希冲突的存在，同一索引下可能挂载多个节点，需遍历链表。
+* **掩码 (Mask) 机制**：判断逻辑为 `node->id == (received_id & node->id_mask)`。
+* **应用场景**：若设备 ID 包含动态数据（如最后 8 位为动态值），可将 Mask 设为 `0xFFFFFF00`，实现对一类 ID 的模糊匹配。
+
+
+
+**核心逻辑代码:**
+
+```c
+/* 哈希定位 + 链表遍历 */
+node = table->table[id % table->len]; // O(1) 定位
+
+// 遍历链表 (O(n) 冲突处理)
+while ((node != NULL) && (node->id) != (id & node->id_mask)) {
+    node = node->next;
+}
+
+```
+
+### 阶段四：数据交付与回调执行 (Callback)
+
+当匹配到注册节点 `node` 后，数据流到达终点。
+
+1. **格式标准化**：将不同外设的头文件信息统一转换为 `can_rx_header_t` 结构体，确保用户层接口一致。
+2. **透传设备指针**：`node->can_data` 是用户注册时绑定的设备对象指针（例如电机结构体 `&motor1`）。
+3. **函数调用**：
+```c
+node->callback(node->can_data, &call_rx_header, rx_data);
+
+```
+
+
+此时，控制权正式移交给用户的业务逻辑层。
+
