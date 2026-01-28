@@ -79,7 +79,7 @@ typedef struct {
     uint32_t id;         /*!< Message ID.                                     */
     uint32_t id_type;    /*!< ID type, `CAN_ID_STD` or `CAN_ID_EXT`.          */
     uint32_t frame_type; /*!< Frame type, `CAN_RTR_DATA` or `CAN_RTR_REMOTE`. */
-    uint8_t data_length; /*!< Message Data length.                            */
+    uint8_t data_length; /*!< Message Data length (DLC). DLC编码范围0-8：如果DLC=1则数据位为1字节(8位)，如果DLC=8则数据位为8字节(64位)。 */
 } can_rx_header_t;
 ```
 
