@@ -24,3 +24,5 @@ comments: ture
 ![去背景](./Picture/去背景-1762785039654-9.png){.normal}
 
 ![无背景](./Picture/无背景.png){.normal}
+
+![特别鸣谢](Picture/特别鸣谢.jpg)
