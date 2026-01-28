@@ -149,6 +149,7 @@ nav:
       - CAN总线:
           - CAN总线基础: Electrical/CAN/CAN-Bus-Basics.md
           - CAN List详解: Electrical/CAN/CAN-List.md
+          - CAN List详解 一些代码细节: Electrical/CAN/CAN-List-Integrated.md
       - 其他:
           - 电控基础: Electrical/Other/电控基础.md
           - 树莓派: Electrical/Other/树莓派.md
