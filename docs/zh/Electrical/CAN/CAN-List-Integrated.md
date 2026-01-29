@@ -1,11 +1,11 @@
 # CAN 通信列表模块 (CAN List)
 
 > **最近修改日期** ：2026-01-28
-> 
+>
 > **参与者**：Deadline039（作者），Jackrainman（文档编写）
-> 
+>
 > **版本**：1.0
-> 
+>
 > **相关文档**：
 > - [CAN-List.md](./CAN-List.md) - 电控专业深度解析与实战案例
 > - [CAN-Bus-Basics.md](./CAN-Bus-Basics.md) - CAN 总线基础知识
@@ -191,7 +191,7 @@ uint8_t can_list_change_callback(can_selected_t can_select, uint32_t id_type, ui
 
 每个 CAN 外设（如 CAN1, CAN2）都有一个独立的 `can_table_t` 指针，存储在全局数组中。
 
-> **提示**：如需了解数据结构的深度解析（指针与多级结构、哈希表设计原理），请参考 [CAN-List.md](./CAN-List.md#4-数据结构设计-电控系统的效率之选) 第4章。
+> **提示**：如需了解数据结构的深度解析（指针与多级结构、哈希表设计原理），请参考 [CAN-List.md](./CAN-List.md#4-数据结构设计) 第4章。
 
 ## 6. 架构详解
 
@@ -220,15 +220,15 @@ bxCAN 占用 4 个专用的中断向量，以保证通信的实时性。下图�
 如图所示：
 
 - **发送中断 (TX)**：当 3 个发送邮箱中至少有一个变为空（发送完成）时产生。
-    
+
 - **FIFO 0 中断** & **FIFO 1 中断**：
-    
+
     - 收到新报文（FMP）。
-        
+
     - FIFO 满（FULL）。
-        
+
     - FIFO 溢出（OVR）。
-        
+
 - **状态改变错误中断 (SCE)**：处理出错（Error）、唤醒（Wakeup）或进入睡眠（Sleep）等事件。
 
 ### 6.2 详细数据流解析
@@ -242,7 +242,7 @@ bxCAN 占用 4 个专用的中断向量，以保证通信的实时性。下图�
 根据是否使用 RTOS，处理逻辑分为两条路径：
 
 * **RTOS 路径（异步高效模式，推荐）**
-  * **核心思想**：ISR 仅负责“通知”，不做繁重处理，确保系统高实时性。
+  * **核心思想**：ISR 仅负责"通知"，不做繁重处理，确保系统高实时性。
   * **操作流程**：
     1. **打包元数据**：将 CAN 句柄 (`hcan`) 和 FIFO 编号 (`rx_fifo`) 封装入结构体。
     2. **推入队列**：调用 `xQueueSendFromISR` 将消息发送至后台任务队列。
@@ -360,7 +360,6 @@ uint32_t mask = 0x000000FF; // 掩码：只匹配低 8 位
 
 > **提示**：如需了解掩码机制深度剖析、位运算原理、复杂应用场景，请参考 [CAN-List.md](./CAN-List.md) 第4章"掩码机制深度剖析"。
 
-## 8. 使用示例
 
 ## 8. 使用示例
 
@@ -489,8 +488,8 @@ FreeRTOS 使用 PendSV 和 SysTick 异常进行任务调度，这些异常的优
 
 | 术语 | 全称 / 含义 | 代码中的作用 |
 | --- | --- | --- |
-| **FDCAN** | **Flexible Data-rate CAN** | 一种进阶的 CAN 协议，支持更高的数据传输速率（最高 8Mbps）和更长的数据帧（最高 64 字节）。 |
-| **bxCAN** | **Basic Extended CAN** | STM32 传统的 CAN 外设模块，遵循标准的 CAN 2.0B 协议（最高 1Mbps，8 字节数据）。 |
+| **FDCAN** | **Flexible Data-rate CAN** | 一种进阶的 CAN 协议，支持更高的数据传输速率（最高 8 Mbps）和更长的数据帧（最高 64 字节）。 |
+| **bxCAN** | **Basic Extended CAN** | STM32 传统的 CAN 外设模块，遵循标准的 CAN 2.0B 协议（最高 1 Mbps，8 字节数据）。 |
 | **HAL** | **Hardware Abstraction Layer** | 硬件抽象层库。代码中大量使用了以 `HAL_` 开头的函数来直接操作底层硬件。 |
 | **FIFO** | **First In, First Out** | 先进先出队列。硬件接收到消息后会先存放在名为 FIFO0 或 FIFO1 的缓冲区中。 |
 | **ISR** | **Interrupt Service Routine** | 中断服务程序。硬件产生特定事件（如收到消息）时，CPU 强行暂停当前任务去执行的紧急代码。 |
@@ -502,6 +501,7 @@ FreeRTOS 使用 PendSV 和 SysTick 异常进行任务调度，这些异常的优
 ### 11.1 CAN 总线基础知识
 
 关于 CAN 总线物理层、差分信号、抗干扰原理等基础知识，请参阅 [CAN-Bus-Basics.md](./CAN-Bus-Basics.md)。
+
 
 ### 11.2 源码文件说明
 
@@ -515,4 +515,3 @@ FreeRTOS 使用 PendSV 和 SysTick 异常进行任务调度，这些异常的优
 ---
 
 **如有问题或建议，请联系模块作者或文档编写者。**
-
