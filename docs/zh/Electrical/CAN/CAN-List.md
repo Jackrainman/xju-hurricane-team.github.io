@@ -10,7 +10,7 @@
 > - [CAN-List-Integrated.md](./CAN-List-Integrated.md) - 完整 API 参考与模块文档
 > - [CAN-Bus-Basics.md](./CAN-Bus-Basics.md) - CAN 总线基础知识
 
-## 🎯 模块定位与设计哲学
+## 模块定位与设计理念
 
 `can_list` 模块是为**机器人电控系统**量身打造的 CAN 消息分发器。在典型的机器人系统中（如 RoboMaster 机甲大师赛），一个底盘可能包含 4 个电机，一个云台包含 2 个电机，再加上多个传感器（IMU、陀螺仪、视觉识别模块），CAN 总线上可能有数十个不同的设备 ID。
 
@@ -18,7 +18,7 @@
 
 传统开发中，工程师常在中断中使用 `switch-case` 或 `if-else` 链处理不同 ID：
 
-```c
+```
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
     CAN_RxHeaderTypeDef header;
     uint8_t data[8];
@@ -53,7 +53,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
 ---
 
-## 🏗️ 整体架构概览
+## 整体架构概览
 
 `can_list.c` 的核心功能是一个 **CAN 消息分发器（Dispatcher）**。它维护了一个查找表，当硬件收到 CAN 消息时，它根据 CAN ID 查找并执行对应的回调函数。
 
@@ -75,7 +75,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
 ### 电控视角：为什么 RTOS 如此重要？
 
-在机器人控制系统中，**实时性**和**确定性**是核心要求。电机控制环（位置环、速度环、电流环）需要严格的时间确定性，通常要求控制频率在 1kHz 以上。如果 CAN 中断处理时间过长，可能导致：
+在机器人控制系统中，**实时性**和**确定性**是核心要求。电机控制环（位置环、速度环、电流环）需要严格的时间确定性，通常要求控制频率在 200 Hz 以上。如果 CAN 中断处理时间过长，可能导致：
 
 1. **控制环抖动**：中断处理时间不稳定，导致控制周期波动
 2. **中断丢失**：高频 CAN 消息可能被遗漏
@@ -83,7 +83,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
 ### 代码解析
 
-让我们从文件的最顶部开始看。
+下面从源文件顶部开始分析代码结构和实现逻辑。
 
 ```
 #include "can_list/can_list.h"
@@ -120,18 +120,21 @@ static queue_msg_t send_msg_from_isr;
 - 中断中直接调用 `can_message_process`，完成所有处理
 - **优点**：简单直接，无任务切换开销
 - **缺点**：中断占用时间长，可能影响其他中断响应
-- **适用场景**：简单系统，CAN 消息频率低（< 100Hz）
+- **适用场景**：简单系统，CAN 消息频率低（< 100 Hz）
 
 #### **RTOS 模式（推荐用于机器人系统）**
 - 引入 `queue_msg_t` 结构体和 FreeRTOS 队列机制
 - 中断仅发送通知，后台任务处理实际数据
 
-### 🔍 关键设计决策：为什么只传递句柄，不传递数据？
+### 关键设计决策：为什么只传递句柄，不传递数据？
 
 `queue_msg_t` 只保存了 `hcan` (CAN 句柄) 和 `rx_fifo` (接收 FIFO 的编号)，并没有保存具体的 **CAN 消息内容（数据）**。这是经过深思熟虑的设计：
 
 **中断服务程序（ISR）的设计原则**：
-> ISR 就像是一个紧急电话，原则是"快进快出"（Get in, Get out）
+
+中断服务程序的设计原则是"快速响应、快速处理"，即在中断上下文中仅执行最关键的操作，避免占用过多 CPU 时间。
+
+通俗来说，中断就像紧急电话，需要尽快接听并处理关键事务，然后挂断电话。
 
 如果我们在 ISR 里直接读取 8 字节（bxCAN）甚至 64 字节（FDCAN）的数据：
 1. **时间开销**：读取数据需要多个寄存器访问，占用 CPU 时间
@@ -142,17 +145,17 @@ static queue_msg_t send_msg_from_isr;
 
 | 方案 | 中断内处理时间 | 内存占用 | 系统影响 |
 |------|---------------|----------|----------|
-| **传统方案**：中断内解析 | 10-50μs | 低 | 可能阻塞其他中断 |
-| **本模块方案**：仅传递句柄 | 1-5μs | 稍高（队列） | 极小 |
+| **传统方案**：中断内解析 | 10-50 μs | 低 | 可能阻塞其他中断 |
+| **本模块方案**：仅传递句柄 | 1-5 μs | 稍高（队列） | 极小 |
 
-### 📊 实际性能数据
+### 实际性能数据
 
-以 STM32F4 (168MHz) 为例：
-- **中断内读取数据**：约 15μs（8 字节数据）
-- **仅传递句柄**：约 2μs（队列操作）
-- **后台任务处理**：10-20μs（哈希查找 + 回调）
+以 STM32F4 (168 MHz) 为例：
+- **中断内读取数据**：约 15 μs（8 字节数据）
+- **仅传递句柄**：约 2 μs（队列操作）
+- **后台任务处理**：10-20 μs（哈希查找 + 回调）
 
-**提升**：中断占用时间减少 **85%**！
+通过采用仅传递句柄的优化方案，中断占用时间减少 85%，显著降低了中断延迟对系统实时性的影响。
 
 ### 工作流程
 
@@ -162,7 +165,7 @@ static queue_msg_t send_msg_from_isr;
 
 2. **任务处理阶段**：FreeRTOS 的任务 `can_list_polling_task` 接收到队列消息后，才会真正调用 `HAL_CAN_GetRxMessage`（或 `HAL_FDCAN_GetRxMessage`）去硬件缓冲区里"传输"和提取数据。
 
-### 🎯 电控应用建议
+### 电控应用建议
 
 1. **CAN 中断优先级设置**：
    ```c
@@ -178,7 +181,7 @@ static queue_msg_t send_msg_from_isr;
    #define CAN_LIST_QUEUE_LENGTH 5  // 根据消息频率调整
    ```
    - **建议**：队列长度 = 最大突发消息数 × 1.5
-   - **示例**：电机控制频率 1kHz，4 个电机 → 突发 4 条消息 → 队列长度 6
+   - **示例**：电机控制频率 1 kHz，4 个电机 → 突发 4 条消息 → 队列长度 6
 
 3. **任务优先级**：
    ```c
@@ -187,7 +190,7 @@ static queue_msg_t send_msg_from_isr;
    - 高于空闲任务，低于控制环任务
    - 确保 CAN 消息及时处理，但不影响关键控制
 
-## 📚 模块二：数据结构设计 - 电控系统的效率之选
+## 模块二：数据结构设计
 
 ### 电控视角：为什么需要高效的数据结构？
 
@@ -197,18 +200,18 @@ static queue_msg_t send_msg_from_isr;
 - **1 个陀螺仪**（ID: 0x207）
 - **多个传感器**（ID: 0x208-0x20F）
 
-假设控制频率为 1kHz，每秒需要处理：
+假设控制频率为 1 kHz，每秒需要处理：
 ```
-4 电机 × 1000Hz + 2 电机 × 1000Hz + 1 传感器 × 500Hz ≈ 6500 条消息/秒
+4 电机 × 1000 Hz + 2 电机 × 1000 Hz + 1 传感器 × 500 Hz ≈ 6500 条消息/秒
 ```
 
 如果每条消息都需要遍历所有设备（线性查找，O(n)），CPU 负担极重。哈希表能将查找时间降至 **O(1)** 平均情况。
 
-### 🔍 核心数据结构解析
+### 核心数据结构解析
 
 观察 `can_list.c` 中定义的 `can_node` 结构体和 `hash_table_t`：
 
-```c
+```
 typedef struct can_node {
     void *can_data;          /*!< 节点数据指针 */
     uint32_t id;             /*!< CAN ID */
@@ -228,7 +231,7 @@ typedef struct can_node {
 | `callback` | `can_callback_t` | **回调函数指针**，匹配成功后执行的业务逻辑 |
 | `next` | `struct can_node*` | **链表指针**，处理哈希冲突，将同一哈希桶的节点连接 |
 
-### 🎯 掩码机制：电控协议的关键特性
+### 掩码机制
 
 #### 为什么电控系统需要掩码？
 
@@ -289,11 +292,11 @@ can_list_add_new_node(can1_selected, &motor1, device_id, mask, CAN_ID_EXT, motor
 | **电机反馈** | 低 8 位为设备 ID | `0x01` | `0x000000FF` | 忽略错误码和模式 |
 | **广播消息** | 高 16 位为类型 | `0x1000` | `0xFFFF0000` | 匹配一类消息 |
 
-### 🏗️ 哈希表设计：时间与空间的平衡
+### 哈希表设计
 
 #### 哈希表结构
 
-```c
+```
 typedef struct {
     can_node_t **table; /*!< 指向节点指针数组的指针（哈希桶）。*/
     uint32_t len;       /*!< 哈希表的大小（长度）。*/
@@ -342,7 +345,7 @@ can_list_add_can(can1_selected, table_len, table_len);
 #### 冲突处理：链表法
 
 当多个 ID 哈希到同一位置时，使用链表连接：
-```c
+```
 // 哈希冲突示例：ID 0x201 和 0x214 可能哈希到同一位置
 table[hash] → node1(0x201) → node2(0x214) → NULL
 ```
@@ -361,7 +364,7 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 | 20 | 31 | 1.1 | 2 | 428 字节 |
 | 50 | 61 | 1.05 | 3 | 988 字节 |
 
-### 📝 电控开发最佳实践
+### 电控开发最佳实践
 
 1. **表长度选择**：
    ```c
@@ -407,6 +410,7 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
               empty_buckets*100.0/table->len, max_chain);
    }
    ```
+
 ---
 
 ### 语法讲解：指针与多级结构
@@ -432,7 +436,9 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 
 
 
-### 1. `can_list_add_can`：初始化 CAN 实例
+## 模块三：核心管理函数
+
+### `can_list_add_can`：初始化 CAN 实例
 
 这个函数的作用是为指定的 CAN 外设（如 CAN1）开辟空间，并准备好存放节点的“抽屉”。
 
@@ -449,7 +455,7 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 
 ---
 
-### 2. `can_list_add_new_node`：添加新节点
+### `can_list_add_new_node`：添加新节点
 
 这是我们将具体的设备（如电机、传感器）注册到系统中的函数。
 
@@ -468,7 +474,7 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 
 ---
 
-### 3. `can_list_del_node_by_id`：删除节点
+### `can_list_del_node_by_id`：删除节点
 
 当你不再需要监听某个 ID 时，使用此函数将其从内存中移除。
 
@@ -485,7 +491,7 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 
 ---
 
-### 4. `can_list_change_callback`：更改回调函数
+### `can_list_change_callback`：更改回调函数
 
 这个函数比较简单，用于在不删除节点的情况下，动态修改某个 ID 对应的处理逻辑。
 
@@ -496,13 +502,12 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 
 ---
 
-### 5. 内部辅助函数：`can_list_find_node_by_id`
+### `can_list_find_node_by_id`：内部辅助函数
 
-这是一个 `static` 函数，仅供内部使用。它封装了在特定哈希表中查找 ID 的逻辑：
+该函数使用 `static` 修饰符，表明其作用域限制在当前源文件内，仅供模块内部调用，不对外提供接口。该函数封装了在特定哈希表中查找 ID 的核心逻辑：
 
-1. 计算哈希下标。
-
-2. 沿着该下标对应的链表一直往后找，直到 ID 匹配或到达链表末尾。
+1. 计算哈希下标
+2. 沿着该下标对应的链表遍历查找，直到 ID 匹配成功或到达链表末尾
 
 
 ---
@@ -585,13 +590,13 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 
 ### 3. 为什么需要掩码？（Why & Result）
 
-**如果没有掩码会怎样？** 你必须为每一个可能的 ID 注册一个节点。
+若不使用掩码机制，开发人员需要为每一个可能的 ID 值注册单独的节点，这将导致内存资源大量消耗，且无法动态处理包含变化位域的协议。
 
-- **例子**：假设某个电机反馈 ID 的高 24 位是随机的错误码，只有低 8 位是设备 ID。
+**示例分析**：假设某个电机反馈 ID 的高 24 位是动态变化的错误码，只有低 8 位是设备 ID。
 
-- **无掩码**：如果错误码有 100 种可能，你就得注册 100 个节点，极其浪费内存，且无法处理未知的错误码。
+- **未使用掩码**：如果错误码有 100 种可能，需要注册 100 个节点，不仅消耗大量内存，而且无法处理未知的错误码。
 
-- **有掩码**：你只需要注册一个节点，设置 `id_mask = 0xFF`。这样程序会自动忽略高位的错误码，只根据低 8 位来识别设备。
+- **使用掩码**：仅注册一个节点，设置 `id_mask = 0xFF`，程序会自动忽略高位的错误码，仅根据低 8 位识别设备。
 
 
 ---
@@ -607,8 +612,6 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 | **README 示例** | 位 [7:0] 是 ID，其余位是数据 | `0x01` (Master ID) | `0x000000FF`       |
 
 
-
-
 | **关键词**   | **全称 / 含义**                    | **代码中的作用**                                             |
 | --------- | ------------------------------ | ------------------------------------------------------ |
 | **FDCAN** | **Flexible Data-rate CAN**     | 一种进阶的 CAN 协议，支持更高的数据传输速率（最高 8Mbps）和更长的数据帧（最高 64 字节）。   |
@@ -618,7 +621,7 @@ table[hash] → node1(0x201) → node2(0x214) → NULL
 
 ---
 
-## 🚀 电控系统集成实战案例
+## 电控系统集成实战案例
 
 ### 案例：RoboMaster 机器人底盘控制系统
 
@@ -646,8 +649,8 @@ int main(void) {
     osKernelInitialize();
 
     // 创建 CAN 列表（必须在 vTaskStartScheduler 之后）
-    can_list_add_can(can1_selected, 13, 31);  // CAN1：标准帧13桶，扩展帧31桶
-    can_list_add_can(can2_selected, 7, 17);   // CAN2：标准帧7桶，扩展帧17桶
+    can_list_add_can(can1_selected, 13, 31);      can_list_add_can(can1_selected, 13, 31);  // CAN1：标准帧 13 桶，扩展帧 31 桶
+    can_list_add_can(can2_selected, 7, 17);   // CAN2：标准帧 7 桶，扩展帧 17 桶
 
     // 注册设备回调
     register_chassis_motors();
@@ -677,8 +680,8 @@ typedef struct {
     uint8_t  error;          /* 错误码，0 表示无错误 */
 } ChassisMotor_t;
 
-/* 4 个底盘电机实例，静态分配避免动态内存分配 */
-static ChassisMotor_t chassis_motors[4] = {0};
+    /* 4 个底盘电机实例，静态分配避免动态内存分配 */
+    static ChassisMotor_t chassis_motors[4] = {0};
 
 /**
  * @brief 底盘电机接收回调函数
@@ -692,11 +695,11 @@ static void chassis_motor_callback(void *node_obj, can_rx_header_t *header, uint
     ChassisMotor_t *motor = (ChassisMotor_t *)node_obj;
 
     /* M3508 电机反馈数据格式（小端序，低字节在前）：
-     * Byte[0-1]: 机械角度（16位无符号）
-     * Byte[2-3]: 转速（16位有符号）
-     * Byte[4-5]: 电流（16位有符号）
-     * Byte[6]:   温度（8位无符号）
-     * Byte[7]:   错误码（8位无符号）
+ * Byte[0-1]: 机械角度（16 位无符号）
+ * Byte[2-3]: 转速（16 位有符号）
+ * Byte[4-5]: 电流（16 位有符号）
+ * Byte[6]:   温度（8 位无符号）
+ * Byte[7]:   错误码（8 位无符号）
      */
 
     /* 角度：高字节在前（大端序），所以需要组合：Byte[0] << 8 | Byte[1] */
@@ -739,8 +742,8 @@ void register_chassis_motors(void) {
             can1_selected,           /* can_select: 使用 CAN1 总线 */
             &chassis_motors[i],      /* node_data: 电机对象指针，回调时传回 */
             motor_id,                /* id: 期望接收的 CAN ID（全匹配） */
-            0x1FFFFFFF,              /* id_mask: 全匹配掩码（29位全1） */
-            CAN_ID_STD,              /* id_type: 标准帧（11位ID） */
+            0x1FFFFFFF,              /* id_mask: 全匹配掩码（29 位全 1） */
+            CAN_ID_STD,              /* id_type: 标准帧（11 位 ID） */
             chassis_motor_callback   /* callback: 收到数据后调用的函数 */
         );
 
@@ -767,7 +770,7 @@ void register_chassis_motors(void) {
  * @note 对应 GM6020 无刷电机反馈数据格式
  */
 typedef struct {
-    int32_t  angle;          /* 编码器值，32位有符号，范围 ±2^31 */
+    int32_t  angle;          /* 编码器值，32 位有符号，范围 ±2^31 */
     int16_t  speed;          /* 转速，单位 RPM（转/分钟） */
     int16_t  current;        /* 电流，单位 0.01A（即实际值 = 值 * 0.01） */
     uint8_t  temperature;    /* 温度，单位 摄氏度 */
@@ -869,7 +872,7 @@ void register_gimbal_motors(void) {
                                      /*         高 24 位为 0，表示忽略这些位 */
                                      /*         低 8 位为 1，表示必须匹配这些位 */
                                      /*         这样 0x12340101 & 0xFF = 0x01，匹配 device_id=0x10 的节点 */
-            CAN_ID_EXT,              /* id_type: 扩展帧（29位ID） */
+            CAN_ID_EXT,              /* id_type: 扩展帧（29 位 ID） */
             gimbal_motor_callback    /* callback: 收到数据后调用的函数 */
         );
 
@@ -1127,8 +1130,8 @@ void gimbal_control_task(void *arg) {
 2. **内存优化**：
    ```c
    // 根据实际设备数调整哈希表大小
-   #define CHASSIS_TABLE_LEN 13   // 4个电机，质数13
-   #define GIMBAL_TABLE_LEN  17   // 2个电机，质数17（考虑未来扩展）
+    #define CHASSIS_TABLE_LEN 13   // 4 个电机，质数 13
+    #define GIMBAL_TABLE_LEN  17   // 2 个电机，质数 17（考虑未来扩展）
    ```
 
 3. **实时性保障**：
@@ -1146,22 +1149,10 @@ void gimbal_control_task(void *arg) {
    }
    ```
 
-### 📊 系统性能评估
-
-| 指标 | 数值 | 说明 |
-|------|------|------|
-| **中断占用时间** | < 5μs | 满足实时性要求 |
-| **消息处理延迟** | 10-50μs | 从接收中断到执行回调 |
-| **内存占用** | ~500 字节 | 哈希表 + 节点 |
-| **最大设备数** | 理论上百个 | 受内存限制 |
-| **控制频率** | 1kHz（稳定） | 满足机器人控制需求 |
-
-### 🎯 总结
+### 总结
 
 `can_list` 模块为机器人电控系统提供了高效、可靠的 CAN 消息分发机制。通过：
 1. **哈希表加速查找**：O(1) 平均查找时间
 2. **掩码机制**：灵活处理复杂协议
 3. **RTOS 集成**：减少中断占用时间
 4. **面向对象设计**：代码清晰，易于维护
-
-本案例展示了如何在实际机器人系统中应用该模块，为电控专业同学提供了完整的参考实现。

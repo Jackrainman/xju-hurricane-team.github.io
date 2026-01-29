@@ -1,6 +1,6 @@
 # CAN 通信列表模块 (CAN List)
 
-> **最近修改日期**：2026-01-28
+> **最近修改日期** ：2026-01-28
 > 
 > **参与者**：Deadline039（作者），Jackrainman（文档编写）
 > 
@@ -54,7 +54,7 @@ CAN-List 是一个专为 STM32 设计的 **CAN 消息分发器 (Dispatcher)**。
 
 | 宏定义名称 | 默认值 | 说明 |
 | --- | --- | --- |
-| `CAN_LIST_USE_FDCAN` | `0` | **硬件选择**。<br>`1`: 启用 FDCAN 支持 (如 STM32G4/H7)。<br>`0`: 启用 bxCAN 支持 (如 STM32F1/F4)。 |
+| `CAN_LIST_USE_FDCAN` | `0` | **硬件选择** 。<br>`1`: 启用 FDCAN 支持 (如 STM32G4/H7)。<br>`0`: 启用 bxCAN 支持 (如 STM32F1/F4)。 |
 | `CAN_LIST_MAX_CAN_NUMBER` | `3` | **最大外设数量**。<br>限制系统支持的 CAN 控制器总数，防止数组越界。 |
 | `CAN_LIST_USE_RTOS` | `1` | **系统集成**。<br>`1`: 创建 FreeRTOS 任务处理消息，需确保 CAN 中断优先级**低于** FreeRTOS 管理的最大优先级。<br>`0`: 在中断回调中直接处理消息。 |
 | `CAN_LIST_MALLOC` | `malloc` | 内存分配函数，可替换为自定义实现。 |
@@ -76,10 +76,10 @@ CAN-List 是一个专为 STM32 设计的 **CAN 消息分发器 (Dispatcher)**。
 
 ```c
 typedef struct {
-    uint32_t id;         /*!< Message ID.                                     */
-    uint32_t id_type;    /*!< ID type, `CAN_ID_STD` or `CAN_ID_EXT`.          */
-    uint32_t frame_type; /*!< Frame type, `CAN_RTR_DATA` or `CAN_RTR_REMOTE`. */
-    uint8_t data_length; /*!< Message Data length (DLC). DLC编码范围0-8：如果DLC=1则数据位为1字节(8位)，如果DLC=8则数据位为8字节(64位)。 */
+    uint32_t id;         /*!< Message ID .                                     */
+    uint32_t id_type;    /*!< ID type , `CAN_ID_STD` or `CAN_ID_EXT` .          */
+    uint32_t frame_type; /*!< Frame type , `CAN_RTR_DATA` or `CAN_RTR_REMOTE` . */
+    uint8_t data_length; /*!< Message Data length (DLC) . DLC编码范围0-8：如果DLC=1则数据位为1字节(8位)，如果DLC=8则数据位为8字节(64位)。 */
 } can_rx_header_t;
 ```
 
@@ -249,7 +249,7 @@ bxCAN 占用 4 个专用的中断向量，以保证通信的实时性。下图�
     3. **屏蔽中断 (仅 bxCAN)**：暂时关闭当前中断，防止在后台处理完成前重复触发导致溢出。
 
 * **非 RTOS 路径（同步模式）**
-  * ISR 直接调用 `can_message_process`，在中断上下文中完成所有解析工作。
+  * ISR 直接调用 `can_message_process` ，在中断上下文中完成所有解析工作。
 
 **代码示例 (can_list.c):**
 
@@ -294,7 +294,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
 * **链表遍历与掩码过滤**
   * 由于哈希冲突的存在，同一索引下可能挂载多个节点，需遍历链表。
-  * **掩码 (Mask) 机制**：判断逻辑为 `node->id == (received_id & node->id_mask)`。
+  * **掩码 (Mask) 机制**：判断逻辑为 `node->id == (received_id & node->id_mask)` 。
   * **应用场景**：若设备 ID 包含动态数据（如最后 8 位为动态值），可将 Mask 设为 `0xFFFFFF00`，实现对一类 ID 的模糊匹配。
 
 **核心逻辑代码:**
@@ -368,12 +368,12 @@ uint32_t mask = 0x000000FF; // 掩码：只匹配低 8 位
 
 假设我们控制一个电机设备，通信协议定义如下：
 
-* **主机 (Master)**：控制端（我们）。
-* **设备 (Device)**：被控端（电机）。
-* **反馈帧 (Device -> Master)**：使用扩展帧。
+* **主机 (Master)** ：控制端（我们）。
+* **设备 (Device)** ：被控端（电机）。
+* **反馈帧 (Device -> Master)** ：使用扩展帧。
   * ID 格式：`[29:22] 错误码 | [21:14] 模式 | [13:11] 数据标识 | [10:8] 保留 | [7:0] Master ID`。
   * 我们只关心 `[7:0]` 位是否匹配 Master ID。
-* **控制帧 (Master -> Device)**：
+* **控制帧 (Master -> Device)** ：
   * ID 格式：`[15:8] Master ID | [7:0] Dev ID`。
 
 ### 8.2 回调函数定义
@@ -483,7 +483,7 @@ FreeRTOS 使用 PendSV 和 SysTick 异常进行任务调度，这些异常的优
 
 ### 9.5 回调函数中可以进行耗时操作吗？
 
-**强烈不建议**。回调函数在中断上下文（非 RTOS 模式）或任务上下文（RTOS 模式）中执行，耗时操作会阻塞其他消息处理，影响系统实时性。应将耗时操作移至其他任务或使用队列异步处理。
+**强烈不建议** 。回调函数在中断上下文（非 RTOS 模式）或任务上下文（RTOS 模式）中执行，耗时操作会阻塞其他消息处理，影响系统实时性。应将耗时操作移至其他任务或使用队列异步处理。
 
 ## 10. 术语表
 
@@ -510,7 +510,7 @@ FreeRTOS 使用 PendSV 和 SysTick 异常进行任务调度，这些异常的优
 
 ### 11.3 版本历史
 
-- **v1.0** (2024-11-24)：初始版本，支持 bxCAN 和 FDCAN，可选 RTOS 集成。
+- **v1.0** (2024-11-24) ：初始版本，支持 bxCAN 和 FDCAN，可选 RTOS 集成。
 
 ---
 
