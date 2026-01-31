@@ -137,7 +137,12 @@ nav:
           - 启动过程: Electrical/Stm32/启动过程.md
       - RTOS:
           - FreeRTOS: Electrical/RTOS/FreeRTOS.md
-      - Motors: Electrical/Motors/电机简介.md
+      - Motors: 
+          - 电机简介: Electrical/Motors/电机简介.md
+          - 大疆电机: Electrical/Motors/大疆电机.md
+          - 达妙电机: Electrical/Motors/达妙电机.md
+          - 步进电机: Electrical/Motors/步进电机.md
+          - VESC电机: Electrical/Motors/VESC电机.md
       - 控制理论:
           - 控制论基础: Electrical/ControlTheory/Control-Theory-Fundamentals.md
           - PID控制详解: Electrical/ControlTheory/PID-Control.md
