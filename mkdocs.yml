@@ -153,6 +153,13 @@ nav:
             - LADRC代码详解: Electrical/ControlTheory/LADRC.md#ladrc代码详解
       - CAN总线:
           - CAN总线与通信列表: Electrical/CAN/CAN总线与通信列表.md
+      - 通信:
+          - 通信协议: Electrical/Communication/通信协议.md
+      - 串口:
+          - 串口简介: Electrical/SerialPort/串口简介.md
+          - USART介绍及使用: Electrical/SerialPort/USART介绍及使用.md
+          - IIC介绍与OLED屏驱动使用: Electrical/SerialPort/IIC介绍与OLED屏驱动使用.md
+          - SPI介绍及使用: Electrical/SerialPort/SPI介绍及使用.md
       - 其他:
           - 电控基础: Electrical/Other/电控基础.md
           - 树莓派: Electrical/Other/树莓派.md

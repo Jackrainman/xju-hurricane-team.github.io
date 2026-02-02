@@ -20,21 +20,21 @@
 
 点 `Setup Motors FOC` ，进⼊电机校准环节，电机先会嗡嗡响，然后再慢慢转。
 
-<img src="./Picture/vesc_4.png" style="zoom:50%;" />
+![](./Picture/vesc_4.png)
 
 因为我们使⽤的电机⼤约在`200g`左右，选择第⼆个 `Small Outrunner`
 
 **注：如果有其他`VESC`电机但不确定具体重量就选择偏小的，否则有可能烧坏电机。**
 
-<img src="./Picture/vesc_5.png" style="zoom:50%;" />
+![](./Picture/vesc_5.png)
 
-<img src="./Picture/vesc_6.png" style="zoom:50%;" />
+![](./Picture/vesc_6.png)
 
-<img src="./Picture/vesc_7.png" style="zoom:50%;" />
+![](./Picture/vesc_7.png)
 
 `Gear Ratio`为减速⽐，5065为直驱电机，选择`Direct Drive`，就可以跑 `RUN DETECTION`了
 
-<img src="./Picture/vesc_8.png" style="zoom:50%;" />
+![](./Picture/vesc_8.png)
 
 至此电机校准完成！
 
