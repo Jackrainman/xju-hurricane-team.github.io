@@ -137,24 +137,22 @@ nav:
           - 启动过程: Electrical/Stm32/启动过程.md
       - RTOS:
           - FreeRTOS: Electrical/RTOS/FreeRTOS.md
-      - Motors: 
+      - Motors:
           - 电机简介: Electrical/Motors/电机简介.md
           - 大疆电机: Electrical/Motors/大疆电机.md
           - 达妙电机: Electrical/Motors/达妙电机.md
           - 步进电机: Electrical/Motors/步进电机.md
           - VESC电机: Electrical/Motors/VESC电机.md
       - 控制理论:
-          - 控制论基础: Electrical/ControlTheory/Control-Theory-Fundamentals.md
-          - PID控制详解: Electrical/ControlTheory/PID-Control.md
-          - 控制论进阶: Electrical/ControlTheory/Advanced-Control-Theory.md
+          - 控制论基础: Electrical/ControlTheory/控制论基础.md
+          - PID控制详解: Electrical/ControlTheory/PID控制.md
+          - 控制论进阶: Electrical/ControlTheory/控制论进阶.md
           - LADRC:
             - 跟踪微分器(TD): Electrical/ControlTheory/LADRC.md#跟踪微分器td
             - 扩张状态观测器(ESO): Electrical/ControlTheory/LADRC.md#扩张状态观测器eso
             - LADRC代码详解: Electrical/ControlTheory/LADRC.md#ladrc代码详解
       - CAN总线:
-          - CAN总线基础: Electrical/CAN/CAN-Bus-Basics.md
-          - CAN List详解: Electrical/CAN/CAN-List-Integrated.md
-          - CAN List详解 一些代码细节（电控专供）: Electrical/CAN/CAN-List.md
+          - CAN总线与通信列表: Electrical/CAN/CAN总线与通信列表.md
       - 其他:
           - 电控基础: Electrical/Other/电控基础.md
           - 树莓派: Electrical/Other/树莓派.md
@@ -177,7 +175,7 @@ nav:
       - 深度学习:
         - 知识点: Vision/深度学习/知识点.md
         - 实践结果: Vision/深度学习/实践结果.md
-      - 强化学习: 
+      - 强化学习:
           - 强化学习: Vision/强化学习/强化学习.md
           - 强化学习基础: Vision/强化学习/0.1强化学习基础.md
           - 马尔可夫决策过程: Vision/强化学习/0.2马尔可夫决策过程.md
@@ -191,9 +189,9 @@ nav:
           - 随机近似(SA): Vision/强化学习/3.随机近似(SA).md
           - 时序差分: Vision/强化学习/4.时序差分.md
           - 值函数近似: Vision/强化学习/5.值函数近似.md
-      - 工具使用: 
+      - 工具使用:
           - 工具: Vision/工具/工具.md
-      - 电赛: 
+      - 电赛:
           - 2025C: Vision/电赛/2025C.md
   - 机械:
       - 关于机械: Mechanical/index.md
