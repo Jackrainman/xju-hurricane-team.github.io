@@ -1,19 +1,25 @@
 window.MathJax = {
   tex: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
     processEscapes: true,
-    processEnvironments: true
+    processEnvironments: true,
+    packages: {'[+]': ['ams']}
   },
   options: {
-    ignoreHtmlClass: ".*|",
-    processHtmlClass: "arithmatex"
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    ignoreHtmlClass: '',
+    processHtmlClass: ''
+  },
+  startup: {
+    pageReady: function() {
+      return MathJax.typesetPromise();
+    }
   }
 };
 
-document$.subscribe(() => {
-  MathJax.typesetPromise()
-})
-
-//公式自动添加空格
-pangu.spacingPageBody();
+document$.subscribe(function() {
+  if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+    MathJax.typesetPromise();
+  }
+});
