@@ -1,6 +1,8 @@
 > 更新日期：2026/2/1
 >
 > 参与者：KkarinL15
+>
+> 源码地址：[message-protocol](https://github.com/XJU-Hurricane-Team/message-protocol)
 
 在项目文件夹中创建`Modules`，在User文件夹中创建`Utils`，如图放置通信协议所需文件
 

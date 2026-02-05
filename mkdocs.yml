@@ -147,7 +147,7 @@ nav:
       - RTOS:
           - FreeRTOS: Electrical/RTOS/FreeRTOS.md
       - Motors: 
-          - 电机简介: Electrical/Motors/电机简介.md
+          - 电机简介: Electrical/Motors/index.md
           - 大疆电机: Electrical/Motors/大疆电机.md
           - 达妙电机: Electrical/Motors/达妙电机.md
           - 步进电机: Electrical/Motors/步进电机.md
@@ -159,10 +159,7 @@ nav:
           - 控制论基础: Electrical/ControlTheory/控制论基础.md
           - PID控制详解: Electrical/ControlTheory/PID控制.md
           - 控制论进阶: Electrical/ControlTheory/控制论进阶.md
-          - LADRC:
-            - 跟踪微分器(TD): Electrical/ControlTheory/LADRC.md#跟踪微分器td
-            - 扩张状态观测器(ESO): Electrical/ControlTheory/LADRC.md#扩张状态观测器eso
-            - LADRC代码详解: Electrical/ControlTheory/LADRC.md#ladrc代码详解
+          - LADRC: Electrical/ControlTheory/LADRC.md
       - 其他:
           - 电控基础: Electrical/Other/电控基础.md
           - 树莓派: Electrical/Other/树莓派.md

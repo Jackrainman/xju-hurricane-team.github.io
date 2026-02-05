@@ -30,4 +30,4 @@ MPU
 选型手册：[Selection_Guide.pdf](https://static.stmcu.com.cn/upload/Selection_Guide.pdf)
 
 PS.
-MPU 和 MCU的最主要的区别就是 MPU 的性能更强具有 MMU（内存管理单元）能够运行 Linux 操作系统，而 MCU 则只能运行 FreeRTOS 这类操作系统。
+MPU 和 MCU的最主要的区别就是 MPU 的性能更强具有 MMU（内存管理单元）能够运行 Linux 操作系统，而 MCU 则只能运行 FreeRTOS 这类实时操作系统。
