@@ -132,17 +132,29 @@ nav:
           - C编码风格与规范: Electrical/C语言/Program-Design/C-code-style.md
       - STM32:
           - Stm32: Electrical/Stm32/index.md
-          - Stm32基础: Electrical/Stm32/Stm32基础.md
-          - Stm32开发: Electrical/Stm32/Stm32开发.md
-          - 启动过程: Electrical/Stm32/启动过程.md
+          - Stm32基础: 
+            - Stm32简介: Electrical/Stm32/Stm32基础/Stm32简介.md
+            - 时钟系统: Electrical/Stm32/Stm32基础/时钟系统.md
+            - 启动过程: Electrical/Stm32/Stm32基础/启动过程.md
+          - Stm32开发: 
+            - 项目组成: Electrical/Stm32/Stm32开发/项目组成.md
+            - 开发环境: Electrical/Stm32/Stm32开发/开发环境.md
+          - Stm32通信:
+            - USART: Electrical/Stm32/Stm32外设/USART.md
+            - IIC: Electrical/Stm32/Stm32外设/IIC.md
+            - SPI: Electrical/Stm32/Stm32外设/SPI.md
+            - CAN: Electrical/Stm32/Stm32外设/CAN.md
       - RTOS:
           - FreeRTOS: Electrical/RTOS/FreeRTOS.md
-      - Motors:
+      - Motors: 
           - 电机简介: Electrical/Motors/电机简介.md
           - 大疆电机: Electrical/Motors/大疆电机.md
           - 达妙电机: Electrical/Motors/达妙电机.md
           - 步进电机: Electrical/Motors/步进电机.md
           - VESC电机: Electrical/Motors/VESC电机.md
+      - 代码解析:
+          - can_list: Electrical/代码解析/can_list解析.md
+          - msg_protocol: Electrical/代码解析/msg_protocol解析.md
       - 控制理论:
           - 控制论基础: Electrical/ControlTheory/控制论基础.md
           - PID控制详解: Electrical/ControlTheory/PID控制.md
@@ -151,15 +163,6 @@ nav:
             - 跟踪微分器(TD): Electrical/ControlTheory/LADRC.md#跟踪微分器td
             - 扩张状态观测器(ESO): Electrical/ControlTheory/LADRC.md#扩张状态观测器eso
             - LADRC代码详解: Electrical/ControlTheory/LADRC.md#ladrc代码详解
-      - CAN总线:
-          - CAN总线与通信列表: Electrical/CAN/CAN总线与通信列表.md
-      - 通信:
-          - 通信协议: Electrical/Communication/通信协议.md
-      - 串口:
-          - 串口简介: Electrical/SerialPort/串口简介.md
-          - USART介绍及使用: Electrical/SerialPort/USART介绍及使用.md
-          - IIC介绍与OLED屏驱动使用: Electrical/SerialPort/IIC介绍与OLED屏驱动使用.md
-          - SPI介绍及使用: Electrical/SerialPort/SPI介绍及使用.md
       - 其他:
           - 电控基础: Electrical/Other/电控基础.md
           - 树莓派: Electrical/Other/树莓派.md

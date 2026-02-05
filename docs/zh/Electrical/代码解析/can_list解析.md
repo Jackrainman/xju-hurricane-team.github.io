@@ -152,7 +152,7 @@ void app_init(void) {
 
 ### 5.1 数据流向
 
-![CAN 硬件架构](./Pictures/CAN1.png)
+![CAN 硬件架构](./Picture/CAN1.png)
 
 - **发送端**：CPU 写入发送邮箱（Mailbox 0/1/2），优先级由 ID 决定
 - **接收端**：报文通过 GPIO 进入过滤器
@@ -161,7 +161,7 @@ void app_init(void) {
 
 ### 5.2 测试模式
 
-![CAN 测试模式](./Pictures/CAN2.png)
+![CAN 测试模式](./Picture/CAN2.png)
 
 | 模式 | 说明 |
 |------|------|
@@ -171,7 +171,7 @@ void app_init(void) {
 
 ### 5.3 工作模式
 
-![CAN 工作模式](./Pictures/CAN3.png)
+![CAN 工作模式](./Picture/CAN3.png)
 
 - **初始化模式**：配置参数时进入
 - **正常模式**：收发报文的正常工作状态
@@ -179,7 +179,7 @@ void app_init(void) {
 
 ### 5.4 中断系统
 
-![CAN 中断系统](./Pictures/CAN4.png)
+![CAN 中断系统](./Picture/CAN4.png)
 
 - **发送中断**：邮箱变空时产生
 - **FIFO 中断**：新报文、FIFO 满、溢出

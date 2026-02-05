@@ -2,7 +2,6 @@
 comments: true  
 ---
 
-
 电控需要做到不只是能用，而不是"又不是不能用"。
 
 
@@ -14,3 +13,4 @@ comments: true
 - 机构的解算与控制。
 - ......
 
+![github动图](./Picture/github动图.gif){.img-scale-25}
